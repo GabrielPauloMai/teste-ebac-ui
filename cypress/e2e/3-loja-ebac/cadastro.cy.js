@@ -15,7 +15,7 @@ describe('Funcionalidade: Cadastro', () => {
         cy.get("#reg_password").type('Teste@123')
         cy.get("input[name='register']").click()
 
-        cy.get("html > body > div:nth-of-type(1) > div:nth-of-type(5) > section:nth-of-type(2) > div > div > main > div > div > p:nth-of-type(1)")
+        cy.get(".woocommerce-MyAccount-content > :nth-child(2)")
             .should('exist')
 
         cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
@@ -38,7 +38,7 @@ describe('Funcionalidade: Cadastro', () => {
         cy.get("#reg_password").type(user.password)
         cy.get("input[name='register']").click()
 
-        cy.get("html > body > div:nth-of-type(1) > div:nth-of-type(5) > section:nth-of-type(2) > div > div > main > div > div > p:nth-of-type(1)")
+        cy.get(".woocommerce-MyAccount-content > :nth-child(2)")
             .should('exist')
 
         cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()

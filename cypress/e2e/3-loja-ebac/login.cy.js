@@ -15,7 +15,7 @@ describe('Login', () => {
         cy.get('#password').type('Mudar@123')
         cy.get('.woocommerce-form > .button').click()
 
-        cy.get("html > body > div:nth-of-type(1) > div:nth-of-type(5) > section:nth-of-type(2) > div > div > main > div > div > p:nth-of-type(1)")
+        cy.get(".woocommerce-MyAccount-content > :nth-child(2)")
             .should('contain', 'Olá, gabriel.mai (não é gabriel.mai? Sair)')
 
     })
