@@ -22,4 +22,27 @@ describe('Funcionalidade: Cadastro', () => {
         cy.get(".woocommerce-message").should('contain', 'Detalhes da conta modificados com sucesso.')
     })
 
+        it('Deve completar o cadastro com sucesso - Usando variáveis', () => {
+            let user = {
+                firstName: faker.person.firstName(),
+                lastName: faker.person.lastName(),
+                password: faker.internet.password()
+            }
+            user.email = faker.internet.email(user.firstName)
+
+        cy.get("#reg_email").type(user.email)
+        cy.get("#reg_password").type(user.password)
+        cy.get("input[name='register']").click()
+
+        cy.get("html > body > div:nth-of-type(1) > div:nth-of-type(5) > section:nth-of-type(2) > div > div > main > div > div > p:nth-of-type(1)")
+            .should('exist')
+
+        cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
+        cy.get("#account_first_name").type(user.firstName)
+        cy.get("#account_last_name").type(user.lastName)
+        cy.get(".woocommerce-Button").click()
+
+        cy.get(".woocommerce-message").should('contain', 'Detalhes da conta modificados com sucesso.')
+    })
+
 })
