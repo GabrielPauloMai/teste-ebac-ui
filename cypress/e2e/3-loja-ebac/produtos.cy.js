@@ -31,7 +31,7 @@ describe('Funcionalidade: Produtos', () => {
     })
 
     it('Deve selecionar um produto específico', () => {
-        let productName = 'Hollister Backyard Sweatshirt'
+        let productName = 'Ariel Roll Sleeve Sweatshirt'
         cy.get('@products').contains(productName).click()
         cy.get('.product_title').should('contain', productName)
 
