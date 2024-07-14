@@ -59,6 +59,13 @@ describe('Login', () => {
             .should('contain', 'Olá, gabriel.mai (não é gabriel.mai? Sair)')
     })
 
+    it.only('Deve fazer login com sucesso - Usando Commandos Customizados', () => {
+        cy.login(perfil.usuario, perfil.senha)
+
+        cy.get(".woocommerce-MyAccount-content > :nth-child(2)")
+            .should('contain', 'Olá, gabriel.mai (não é gabriel.mai? Sair)')
+    })
+
 })
 
 
