@@ -1,29 +1,15 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
- Cypress.Commands.add('login', (email, password) => {
-        cy.get('#username').type(email)
-        cy.get('#password').type(password)
-        cy.get('.woocommerce-form > .button').click()
- })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', (email, password) => {
+    cy.get('#username').type(email)
+    cy.get('#password').type(password)
+    cy.get('.woocommerce-form > .button').click()
+})
+
+Cypress.Commands.add('preCadastro', (user) => {
+    cy.get("#reg_email").type(user.email)
+    cy.get("#reg_password").type(user.password)
+    cy.get("input[name='register']").click()
+    cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
+    cy.get("#account_first_name").type(user.firstName)
+    cy.get("#account_last_name").type(user.lastName)
+    cy.get(".woocommerce-Button").click()
+})
