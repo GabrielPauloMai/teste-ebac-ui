@@ -13,3 +13,10 @@ Cypress.Commands.add('preCadastro', (user) => {
     cy.get("#account_last_name").type(user.lastName)
     cy.get(".woocommerce-Button").click()
 })
+
+Cypress.Commands.add('detalhesConta', (user) => {
+    cy.get('#account_first_name').type(user.firstName)
+    cy.get('#account_last_name').type(user.lastName)
+    cy.get('#account_display_name').type(user.login)
+    cy.get('.woocommerce-Button').click()
+})
