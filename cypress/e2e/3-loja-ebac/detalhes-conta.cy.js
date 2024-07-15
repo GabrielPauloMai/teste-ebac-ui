@@ -13,12 +13,12 @@ describe('Funcionalidade: Detalhes da Conta', () => {
         cy.screenshot()
     })
 
-    it('Deve validar o nome do usuário', () => {
-        let nome = 'Gabriel Mai'
-        cy.get('.woocommerce-MyAccount-content > :nth-child(2)')
-            .should('contain', nome)
+ it('Deve completar os detalhes da conta com sucesso', () => {
+    cy.detalhesConta({
+        firstName: "Gabriel",
+        lastName: "Mai",
+        login: "gabriel.mai"
     })
-
-    // it('Deve validar o email do usuário', () => {
-        //})
-    })
+     cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
+ })
+})
