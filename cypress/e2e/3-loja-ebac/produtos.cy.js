@@ -51,8 +51,38 @@ describe('Funcionalidade: Produtos', () => {
 
     it('Deve visitar a página de um produto', () => {
 
+        produtosPage.produtoAleatorio()
+
+        cy.get('@randonProduct').find('.name').invoke('text').then((productName) => {
+            produtosPage.visitarProduto(productName)
+            cy.get('.product_title').should('contain', productName)
+        })
     })
 
     it('Deve adicionar um produto ao carrinho', () => {
+
+        produtosPage.produtoAleatorio()
+
+        cy.get('@randonProduct').find('.name').invoke('text').then((productName) => {
+            produtosPage.visitarProduto(productName)
+
+            produtosPage.gerarProduto().then((produto) => {
+                produto.nomeProduto = productName
+                produtosPage.adicionarProdutoCarrinho(produto.tamanho, produto.cor, produto.quantidade)
+                cy.get('.woocommerce-message').should('contain', produtosPage.criarMessage(produto))
+            })
+
+        })
+    })
+
+    it('Deve adicionar um produto ao carrinho buscando da massa de dados', () => {
+        
+        cy.fixture('produtos').each((produto) => {
+            produtosPage.visitarProduto(produto.nomeProduto)
+            cy.get('.product_title').should('contain', produto.nomeProduto)
+            produtosPage.adicionarProdutoCarrinho(produto.tamanho, produto.cor, produto.quantidade)
+            cy.get('.woocommerce-message').should('contain', produtosPage.criarMessage(produto))
+        })
+
     })
 })
